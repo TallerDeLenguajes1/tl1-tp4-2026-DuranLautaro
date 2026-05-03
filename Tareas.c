@@ -15,7 +15,7 @@ Nodo * CrearListaVacia();
 Nodo * CrearTarea(int valor);
 void InsertarNodo(Nodo ** Tarea , Nodo *Nodo);
 Nodo * QuitarTarea(Nodo ** Tarea, int idbuscado);
-void MostrarTareas(Nodo **Tarea);
+void MostrarTareas(Nodo *Tarea);
 int main () {
     srand(time(NULL));
     Nodo * Tareaspendientes=CrearListaVacia(); //apunta a NULL
@@ -62,7 +62,11 @@ int main () {
             printf("No hay mas tareas pendientes\n");
         }
     }while(seleccionar2!=0 && Tareaspendientes!=NULL);
-
+    /*MOSTRAR TAREAS PENDIENTES Y REALIZADAS*/
+    printf("---Lista de Tareas Pendientes---");
+    MostrarTareas(Tareaspendientes);
+    printf("---Lista de Tareas Realizadas---");
+    MostrarTareas(TareasRealizadas);
     return 0;
 }
 Nodo * CrearListaVacia(){
@@ -110,11 +114,16 @@ Nodo * QuitarTarea(Nodo ** Tarea, int idbuscado)
     }
     return aux;
 }
-/*
-void MostrarTareas(Nodo **Tarea) {
+
+void MostrarTareas(Nodo *Tarea) {
     Nodo *aux=Tarea;
+    if(aux==NULL) {
+        printf("La lista esta vacia\n");
+    }
     while(aux!=NULL) {
-        aux
+        printf("\nTarea Id:%d",aux->T.TareaID);
+        printf("\nDescripcion:%s",aux->T.Descripcion);
+        printf("\nDuracion:%d",aux->T.Duracion);
         aux=aux->Siguiente;
     }
-}*/
+}
